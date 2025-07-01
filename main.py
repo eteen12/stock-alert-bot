@@ -11,15 +11,12 @@ def is_market_open():
     market_open = time(6,30)
     market_close = time(13,0)
 
-    return market_open <= now <= market_close
+    return market_open <= now < market_close
 
 def is_final_alert():
     local_tz = pytz.timezone("America/Vancouver")
     now = datetime.now(local_tz).time()
-
-    final_alert = time(13,0)
-    return final_alert
-
+    return now.hour == 13 and now.minute == 0
 
 def run_script():
     while True:
@@ -27,8 +24,7 @@ def run_script():
             print("Market is open, sending update")
             send_sms()
         else:
-            print("Market is closed.")
-
+            print("Market is closed. Trying again in an hour.")
         t.sleep(3600)
 
 run_script()
