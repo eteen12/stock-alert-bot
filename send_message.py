@@ -15,7 +15,7 @@ def send_sms():
     From: {FROM}
     To: {TO}
     Subject: Stock Alert
-
+    \n\n    
     {format_stock_info()}
     """
     
@@ -30,4 +30,5 @@ def send_sms():
                 print("❌ Failed to send SMS:", response)
     except Exception as e:
         print("❌ Error occurred while sending SMS:", str(e))
+
 

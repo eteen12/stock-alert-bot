@@ -17,9 +17,7 @@ def is_final_alert():
     local_tz = pytz.timezone("America/Vancouver")
     now = datetime.now(local_tz).time()
 
-    final_alert = time(13,0)
-    return final_alert
-
+    return time(13,0) <= now < time(13,1)
 
 def run_script():
     while True:
@@ -29,6 +27,7 @@ def run_script():
         else:
             print("Market is closed.")
 
+        print("sleeping for an hour")
         t.sleep(3600)
 
 run_script()
