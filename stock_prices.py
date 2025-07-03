@@ -29,3 +29,5 @@ def format_stock_info():
         lines.append(line)
 
     return "\n".join(lines)
+
+
