@@ -37,4 +37,5 @@ def format_stock_info():
 
     return "\n".join(lines)
 
-print(format_stock_info())
+if __name__ == "__main__":
+    format_stock_info()

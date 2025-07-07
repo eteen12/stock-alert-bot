@@ -1,5 +1,5 @@
 import smtplib
-from stock_prices import get_stock_info, format_stock_info
+from logic.stock_prices import get_stock_info, format_stock_info
 import os
 from dotenv import load_dotenv
 
@@ -29,6 +29,7 @@ def send_sms():
                 print("❌ Failed to send SMS:", response)
     except Exception as e:
         print("❌ Error occurred while sending SMS:", str(e))
-
-send_sms()
+        
+if __name__ == "__main__":
+    send_sms()
 
