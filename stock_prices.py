@@ -1,6 +1,10 @@
 import yfinance as yf
+import json
 
-tickers = ["UNH","BLK","BX","TSLA","IVV","BAM.TO"]
+with open('config.json') as f:
+    stocks = json.load(f)
+    tickers = stocks['tickers']
+
 
 def get_stock_info(tickers):
     info_list = []
@@ -33,3 +37,4 @@ def format_stock_info():
 
     return "\n".join(lines)
 
+print(format_stock_info())
