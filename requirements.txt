@@ -1,2 +1,4 @@
 yfinance
 python-dotenv
+schedule
+pytz

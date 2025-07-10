@@ -1,24 +1,27 @@
-from freezegun import freeze_time
-from schedule import every, repeat, run_pending
-import schedule
 import datetime
-import schedule
 import time
-from logic.main import run_script, is_market_open
+import pytz
+import schedule
+from logic.main import run_market_check
 
-# @repeat(every(1).second)
-@freeze_time("2025-07-07 13:00:00")
-def test_at_close():
-    schedule.every().day.at("13:00").do(run_script)
-    schedule.run_pending()
+LOCAL_TZ = pytz.timezone("America/Vancouver")
 
-@freeze_time("2025-07-06 13:00:00")
-def test_on_weekend():
-    print(is_market_open())
+MARKET_OPEN = datetime.time(6, 30)
+MARKET_CLOSE = datetime.time(13, 0)
 
-test_at_close()
+def market_job():
+    now = datetime.datetime.now(LOCAL_TZ)
+    today = now.weekday()
+    current_time = now.time()
 
-# schedule.every().day.at("13:00").do(run_script)
+    if today >= 5:
+        print(f"Its currently the weekend, skipping jobs.")
+    else:
+        run_market_check(now)
+
+schedule.every(1).hour.do(market_job)
+schedule.every().day.at("13:00").do(market_job)
+
 while True:
-    run_pending()
+    schedule.run_pending()
     time.sleep(1)
