@@ -36,6 +36,10 @@ Made to run 24/7 and notify you via SMS using Gmail’s SMTP and your carrier’
 
 run the script to start sending alerts: `python main.py`
 
+possible to run with old android phone using termux, simply clone and run the project as you would on your computer
+![image](https://github.com/user-attachments/assets/34cbd69c-2a1a-4723-a3d1-fa4f56e7ef73)
+
+
 ## Notes
 
 For what ever reason, SMTP does not like tickers with a "." example BAM.TO has,
